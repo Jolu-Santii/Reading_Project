@@ -31,9 +31,7 @@ Desarrollando proyecto de comprensión lectora...
 
 - Diego: Hola a todos :D
 - Cristobal: Buenas tardes... prefiero C/C++
-
-
--Reychel: Tengo sueño
+- Reychel: Tengo sueño
 
 
 - - -
