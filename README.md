@@ -37,9 +37,7 @@ Desarrollando proyecto de comprensión lectora...
 <<<<<<< HEAD
 - Reychel: Tengo sueño
 - Jose Luis: Hola!! :v
-- Antonio? prueba
-
-asdaSAD
+- Antonio: Hi!
 - - - 
 =======
 - Reychel: Tengo sueño
