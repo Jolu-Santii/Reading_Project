@@ -38,6 +38,17 @@ Desarrollando proyecto de comprensión lectora...
 - Jose Luis: Hola!! :v
 - Antonio: Hi!
 
+## 🎯 Objetivo
+Facilitar el desarrollo de competencias lectoras mediante ejercicios personalizados, retroalimentación inteligente y seguimiento de progreso.
+
+## ✨ Características
+Ejercicios adaptativos: Dificultad ajustable según el nivel del usuario.
+
+Análisis de textos: Identificación de ideas principales, vocabulario clave y estructura argumental.
+
+Gamificación: Logros y recompensas para motivar el aprendizaje.
+
+Panel de estadísticas: Visualización del progreso en tiempo real.
 - - - 
 
 
