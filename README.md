@@ -34,12 +34,21 @@ Desarrollando proyecto de comprensión lectora...
 
 - Diego: Hola a todos :D
 - Cristobal: Buenas tardes... prefiero C/C++
+<<<<<<< HEAD
+- Reychel: Tengo sueño
+- Jose Luis: Hola!! :v
+- Antonio? prueba
 
-
--Reychel: Tengo sueño
-
-
+asdaSAD
 - - - 
+=======
+- Reychel: Tengo sueño
+- Jose Luis: Hola!! :v
+- Antonio? prueba
+
+asda
+- - -
+>>>>>>> 60237dd5e530543997ec8ced5389b94f7720d756
 
 ## Miembros
 ![Static Badge](https://img.shields.io/badge/Prior%20Hernandez%20Reychel--blue?style=for-the-badge&link=https://github.com/reychel) 
