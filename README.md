@@ -24,6 +24,7 @@
 - html
 - vite
 - react
+- typescritp
 
 - - -
 
