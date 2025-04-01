@@ -6,9 +6,24 @@
 ![Static Badge](https://img.shields.io/badge/stable%20version-%20-green?style=for-the-badge)
 
 ## Índice
+- [Reading\_Project](#reading_project)
+- [Proyecto Comprensión Lectora](#proyecto-comprensión-lectora)
+  - [Índice](#índice)
+  - [Tecnologías Utilizadas](#tecnologías-utilizadas)
+  - [Presentación](#presentación)
+  - [Miembros](#miembros)
 
-- [Presentación](#Presentación)
-- [Miembros](#Miembros)  
+- - -
+
+
+
+## Tecnologías Utilizadas
+
+- js
+- css
+- html
+- vite
+- react
 
 - - -
 
@@ -17,7 +32,9 @@ Desarrollando proyecto de comprensión lectora...
 
 -Diego: Hola a todos :D
 
+
 -Reychel: Tengo sueño
+
 
 - - -
 
