@@ -19,6 +19,11 @@
 
 ## Tecnologías Utilizadas
 
+- js
+- css
+- html
+- vite
+- react
 
 - - -
 
