@@ -15,6 +15,8 @@
 
 - - -
 
+
+
 ## Tecnologías Utilizadas
 
 - js
@@ -29,14 +31,9 @@
 ## Presentación
 Desarrollando proyecto de comprensión lectora...  
 
-- Diego: Hola a todos :D
-- Cristobal: Buenas tardes... prefiero C/C++
+Hola a todos :D
 
-
--Reychel: Tengo sueño
-
-
-- - -
+- - - 
 
 ## Miembros
 ![Static Badge](https://img.shields.io/badge/Prior%20Hernandez%20Reychel--blue?style=for-the-badge&link=https://github.com/reychel) 
