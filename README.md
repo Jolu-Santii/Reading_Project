@@ -25,6 +25,7 @@
 - vite
 - react
 - typescritp
+- xd
 
 - - -
 
