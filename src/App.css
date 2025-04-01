@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+/* Estilos base */
+#root {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  overflow-x: hidden;
+
+  --color-dark: #161616;
+  --color-ocean: #416dea;
+  --color-grass: #3dd28d;
+  --color-snow: #FFFFFF;
+  --color-salmon: #F32C52;
+  --color-sun: #feee7d;
+  --color-alge: #7999a9;
+  --color-flower: #353866;
+  --color-smoke: #e4e4e4;
+  
+  --borderRadius: 36px;
+  --font-face: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Contenedor principal */
+.main-content {
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Barra de navegación superior */
+.nav-superior {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+  height: 135px;
+}
+
+.link-background {
+  position: absolute;
+  background-color: #5A1E78;
+  border-radius: 30px;
+  width: 100%;
+  height: inherit;
+  transition: 0.4s cubic-bezier(0.7, 0, 0.38, 0.86) all;
+}
+
+.ul-menu {
+  background-color: #8E44AD; 
+  position: relative;
+  list-style-type: none;
+  padding: 0;
+  width: 100vw;
+  height: inherit;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 2px 5px 5px rgba(109, 14, 133, 0.5);
+}
+
+.ul-menu li {
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+}
+
+.ul-menu li:first-child {
+  margin-left: 30px;
+}
+
+.ul-menu li:last-child {
+  margin-right: 30px;
+} 
+
+.active {
+  display: flex;
+  align-items: center;
+}
+
+.link-text {
+  color: white;
+  font-family: capitalize;
+  font-size: larger;
+  margin-left: 16px;
+  opacity: 0;
+  transition: 0.3s ease all;
+  user-select: none;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+a.active .link-text {
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.user-icon, .logo {
+  width: 75px;
+  height: 75px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 2px;
+}
+
+/* Botones principales */
+.button-container {
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+.button {
+  display: flex;
+  overflow: hidden;
+  margin: 10px;
+  padding: 12px 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: capitalize;
+  color: #fff;
+  border: 0 none;
+  border-radius: var(--borderRadius);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  flex: 0 0 380px;
+  box-shadow: 2px 5px 10px var(--color-smoke);
+}
+
+.button:hover {
+  transition: all 150ms linear;
+  opacity: .85;
+}
+
+.button:active {
+  transition: all 150ms linear;
+  opacity: .75;
+}
+
+.button:focus {
+  outline: 1px dotted #959595;
+  outline-offset: -4px;
+}
+
+.button.-green {
+  color: var(--color-snow);
+  background: var(--color-grass);
+}
+
+.button.-blue {
+  color: var(--color-snow);
+  background: var(--color-ocean);
+}
+
+.button.-salmon {
+  color: var(--color-snow);
+  background: var(--color-salmon);
+}
+
+.button-icon {
+  width: 50px;
+  height: 50px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 2px;
+}
+
+/* Sección de estudiantes */
+.students-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 0;
+  box-sizing: border-box;
+  height: auto; 
+  min-height: 550px; 
+  position: relative;
+  margin: 0;
+}
+
+.student {
+  height: 350px;
+  width: auto;
+  object-fit: contain;
+  position: absolute;
+  bottom: 100px;
+}
+
+.student.boy {
+  left: 10vw;
+}
+
+.student.girl {
+  right: 8vw; 
+}
+
+.center-image-container {
+  position: absolute;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+  z-index: 0;
+  text-align: center;
+  width: min(800px, 90vw); 
+  transition: all 0.3s ease;
+}
+
+.center-image {
+  width: 100%;
+  height: auto;
+  max-height: min(600px, 80vh);
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.image-text {
+  position: absolute;
+  top: 40%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  color: #5A1E78;
+  font-family: "Times New Roman", Times, serif; 
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: bold;
+  text-align: center;
+  padding: 15px;
+  margin: 0;
+  line-height: 1.3; 
+}
+
+/* Elementos decorativos */
+.g3, .g4, .g5, .g32, .g9, .g8 {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  max-width: 100vw;
+}
+
+.g3 {
+  top: 30px;
+  left: 150px;
+}
+
+.g32 {
+  top: 150px;
+  right: 42px;
+}
+
+.g4 {
+  top: 50px;
+  right: 310px;
+}
+
+.g5 {
+  top: 350px;
+  left: 112px;
+}
+
+.g8 {
+  top: 74%;
+  right: 35%;
+}
+
+.g9 {
+  top: 81%;
+  left: 35%;
+}
+
+/* Sección de actividades */
+.activities-container {
+  width: 100vw;
+  max-width: 100%;
+  padding: 20px 5%;
+  box-sizing: border-box;
+  margin: 40px auto 0;
+}
+
+.activities-title {
+  color: #5A1E78;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 5rem;
+  text-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3); /* Sombra de texto más pronunciada */
+}
+
+.activities-list {
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #000000;
+  padding: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 3px solid #eee; /* Borde inferior más grueso */
+}
+
+.activity-name {
+  font-size: 2rem;
+  color: #333;
+  font-weight: bold;
+  margin-left: 35px;
+}
+.activity-buttons {
+  display: flex;
+  gap: 55px; /* Espacio entre botones*/
+}
+
+.status-button {
+  background-color: #ffd966;
+  border: 2px solid #000000; 
+  border-radius: 8px; /* Bordes más redondeados */
+  padding: 15px 30px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000000;
+  font-size: 1.1rem;
+  transition: all 0.1s ease; /* Transición suave para efectos hover */
+}
+
+.status-button:hover {
+  transform: translateY(-5px); /* Efecto de levitación al pasar el mouse */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.go-button {
+  background-color: #8E44AD;
+  color: white;
+  border: 2px solid #000000; 
+  border-radius: 8px;
+  padding: 15px 30px; 
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem; 
+  transition: all 0.1s ease; /* Transición suave para efectos hover */
+}
+
+.go-button:hover {
+  transform: translateY(-5px); /* Efecto de levitación al pasar el mouse */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  background-color: #7D3C98; /* Color ligeramente más oscuro al pasar el mouse */
+}
