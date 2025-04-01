@@ -1,1 +1,26 @@
 # Reading_Project
+# Proyecto Comprensión Lectora
+![Static Badge](https://img.shields.io/badge/licence-BUAP-blue?style=for-the-badge&link=https://buap.mx/)
+![Static Badge](https://img.shields.io/badge/release%20date-Enero%202025-blue?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/status-en%20desarrollo-green?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/stable%20version-%20-green?style=for-the-badge)
+
+## Índice
+
+- [Presentación](#Presentación)
+- [Miembros](#Miembros)  
+
+- - -
+
+## Presentación
+Desarrollando proyecto de comprensión lectora...  
+
+- - -
+
+## Miembros
+![Static Badge](https://img.shields.io/badge/Prior%20Hernandez%20Reychel--blue?style=for-the-badge&link=https://github.com/reychel) 
+![Static Badge](https://img.shields.io/badge/Rojas%20Flores%20Jose%20D.--blue?style=for-the-badge&link=https://github.com/rojas)
+![Static Badge](https://img.shields.io/badge/Rodriguez%20Maldonado%20Jose%20Antonio--blue?style=for-the-badge&link=https://github.com/rodriguezmldo)
+![Static Badge](https://img.shields.io/badge/Santiago%20Ibanez%20Jose%20Luis--blue?style=for-the-badge&link=https://github.com/Jolu-Santii) 
+![Static Badge](https://img.shields.io/badge/Salinas%20Gil%20Diego--blue?style=for-the-badge&link=https://github.com/rojas)
+![Static Badge](https://img.shields.io/badge/Lara%20Paez%20Cristobal%20R.--blue?style=for-the-badge&link=https://github.com/CRIZZxR-110100)
