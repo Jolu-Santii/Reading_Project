@@ -15,6 +15,10 @@
 ## Presentación
 Desarrollando proyecto de comprensión lectora...  
 
+-Diego: Hola a todos :D
+
+-Reychel: Tengo sueño
+
 - - -
 
 ## Miembros
