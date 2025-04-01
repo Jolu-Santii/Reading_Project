@@ -6,9 +6,19 @@
 ![Static Badge](https://img.shields.io/badge/stable%20version-%20-green?style=for-the-badge)
 
 ## Índice
+- [Reading\_Project](#reading_project)
+- [Proyecto Comprensión Lectora](#proyecto-comprensión-lectora)
+  - [Índice](#índice)
+  - [Tecnologías Utilizadas](#tecnologías-utilizadas)
+  - [Presentación](#presentación)
+  - [Miembros](#miembros)
 
-- [Presentación](#Presentación)
-- [Miembros](#Miembros)  
+- - -
+
+
+
+## Tecnologías Utilizadas
+
 
 - - -
 
