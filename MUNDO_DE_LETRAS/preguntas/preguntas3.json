@@ -1,0 +1,52 @@
+[
+    {
+        "pregunta": "1. ¿Qué parte del cuerpo presumía el antílope?",
+        "opciones": [
+            "Sus cuernos", 
+            "Sus patas y velocidad", 
+            "Su cola", 
+            "Su rugido"
+        ],
+        "respuesta": 1
+    },
+    {
+        "pregunta": "2. ¿Qué hizo la tortuga para engañar al antílope durante la carrera?",
+        "opciones": [
+            "Se subió a un pájaro para volar", 
+            "Se escondió detrás de una roca", 
+            "Colocó a sus hermanas en el camino",
+            "Usó un atajo secreto"
+        ],
+        "respuesta": 2
+    },
+    {
+        "pregunta": "3. ¿Qué debía hacer el antílope durante la carrera según la propuesta de la tortuga?",
+        "opciones": [
+            "Contar los árboles del camino", 
+            "Gritar si se sentía cansado", 
+            "Preguntar si la tortuga seguía ahí", 
+            "Saltar cada cinco metros"
+        ],
+        "respuesta": 2
+    },
+    {
+        "pregunta": "4. ¿Qué respuesta escuchaba el antílope cada vez que preguntaba por la tortuga?",
+        "opciones": [
+            "Estoy lejos", 
+            "¡Sí, aquí estoy!", 
+            "No puedo hablar", 
+            "Espérame"
+        ],
+        "respuesta": 1
+    },
+    {
+        "pregunta": "5. ¿Qué aprendió el antílope al final de la historia?",
+        "opciones": [
+            "Que nunca debe correr", 
+            "Que la tortuga es buena cocinera", 
+            "Que no hay que subestimar a los demás", 
+            "Que las tortugas vuelan"
+        ],
+        "respuesta": 2
+    }
+]

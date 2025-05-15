@@ -1,0 +1,52 @@
+[
+    {
+    "pregunta": "1. ¿Por qué Tintín volvía a casa sin merienda?",
+    "opciones": [
+        "Porque la había perdido.",
+        "Porque se la había comido en el parque.",
+        "Porque un niño mayor se la quitaba.",
+        "Porque se la daba a otros niños."
+    ],
+    "respuesta": 2
+    },
+    {
+        "pregunta": "2. ¿Qué observó Tintín en el parque que le hizo reflexionar?",
+        "opciones": [
+            "Un perro ladrando.",
+            "Una avispa.",
+            "Un grupo de niños jugando.",
+            "Un árbol moviéndose con el viento."
+        ],
+        "respuesta": 1
+    },
+    {
+        "pregunta": "3. ¿Qué aprendió Tintín al ver a la avispa?",
+        "opciones": [
+            "Que debía buscar una avispa como mascota.",
+            "Que la fuerza era más importante que el miedo.",
+            "Que debía ignorar a los abusones.",
+            "Que no hacía falta ser fuerte para defenderse."
+        ],
+        "respuesta": 3
+    },
+    {
+        "pregunta": "4. ¿Qué hizo Tintín con el bocadillo para engañar a un abusón?",
+        "opciones": [
+            "Lo escondió en su mochila.",
+            "Le puso chile para que picara mucho.",
+            "Se lo dio a un perro.",
+            "Lo cubrió con barro para que no se lo comieran."
+        ],
+        "respuesta": 1
+    },
+    {
+        "pregunta": "5. ¿Cómo terminó la historia de Tintín con los abusones?",
+        "opciones": [
+            "Se fue de la escuela para evitar problemas.",
+            "Terminó peleando con todos ellos.",
+            "Los abusones lo ignoraron completamente.",
+            "Uno de ellos terminó protegiéndolo."
+        ],
+        "respuesta": 3
+    }
+]

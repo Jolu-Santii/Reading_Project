@@ -1,0 +1,61 @@
+[
+    {"titulo": "DECIR LO QUE PIENSAS Y PENSAR EN LO QUE DICES",
+     "lectura": "lecturas/lectura1.txt",
+     "preguntas": "preguntas/preguntas1.json",
+     "imagen": "ImagenesLecturas/Lectura1.png",
+     "fila": 3, "columna": 1, "color": "#87CEFA"},
+    
+    {"titulo": "LAS RANAS DE NATA",
+     "lectura": "lecturas/lectura2.txt",
+     "preguntas": "preguntas/preguntas2.json",
+     "imagen": "ImagenesLecturas/Lectura2.jpg",
+     "fila": 3, "columna": 2, "color": "#C71585"},
+    
+    {"titulo": "LA TORTUGA Y EL ANTÍLOPE",
+     "lectura": "lecturas/lectura3.txt",
+     "preguntas": "preguntas/preguntas3.json",
+     "imagen": "ImagenesLecturas/Lectura3.jpg",
+     "fila": 4, "columna": 1, "color": "blue"},
+    
+    {"titulo": "EL ÚLTIMO MOHICANO",
+     "lectura": "lecturas/lectura4.txt",
+     "preguntas": "preguntas/preguntas4.json",
+     "imagen": "ImagenesLecturas/Lectura4.jpg",
+     "fila": 4, "columna": 2, "color": "red"},
+    
+    {"titulo": "EL PRINCIPITO",
+     "lectura": "lecturas/lectura5.txt",
+     "preguntas": "preguntas/preguntas5.json",
+     "imagen": "ImagenesLecturas/Lectura5.jpg",
+     "fila": 5, "columna": 1, "color": "orange"},
+    
+    {"titulo": "Y COLORIN COLORADO...",
+     "lectura": "lecturas/lectura6.txt",
+     "preguntas": "preguntas/preguntas6.json",
+     "imagen": "ImagenesLecturas/Lectura6.jpg",
+     "fila": 5, "columna": 2, "color": "green"},
+    
+    {"titulo": "MOZART",
+     "lectura": "lecturas/lectura7.txt",
+     "preguntas": "preguntas/preguntas7.json",
+     "imagen": "ImagenesLecturas/Lectura7.jpg",
+     "fila": 6, "columna": 1, "color": "gray"},
+    
+    {"titulo": "EL COLMILLO BLANCO",
+     "lectura": "lecturas/lectura8.txt",
+     "preguntas": "preguntas/preguntas8.json",
+     "imagen": "ImagenesLecturas/Lectura8.jpg",
+     "fila": 6, "columna": 2, "color": "#F08080"},
+    
+    {"titulo": "TATIN EL NIÑO AVISPA",
+     "lectura": "lecturas/lectura9.txt",
+     "preguntas": "preguntas/preguntas9.json",
+     "imagen": "ImagenesLecturas/Lectura9.jpg",
+     "fila": 7, "columna": 1, "color": "#FF00FF"},
+    
+    {"titulo": "LOS PERITIOS",
+     "lectura": "lecturas/lectura10.txt",
+     "preguntas": "preguntas/preguntas10.json",
+     "imagen": "ImagenesLecturas/Lectura10.jpg",
+     "fila": 7, "columna": 2, "color": "#00008B"}
+]

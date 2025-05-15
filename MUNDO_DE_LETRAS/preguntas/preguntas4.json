@@ -1,0 +1,52 @@
+[
+    {
+        "pregunta": "1. ¿Qué tipo de vestimenta llevaba el hombre?",
+        "opciones": [
+            "Un uniforme militar con botas de cuero.",
+            "Un sayo de cazador verde con vivos amarillos descoloridos.",
+            "Una capa larga y sombrero de ala ancha.",
+            "Un traje de lino con pantalones de montar."
+        ],
+        "respuesta": 1
+    },
+    {
+        "pregunta": "2. ¿Qué calzado usaba el hombre?",
+        "opciones": [
+            "Botas de montar de cuero.",
+            "Zapatos de suela gruesa.",
+            "Mocasines de piel de gamo al estilo indígena.",
+            "Sandalias trenzadas de fibra natural."
+        ],
+        "respuesta": 2
+    },
+    {
+        "pregunta": "3. ¿Qué objeto no formaba parte del equipo del hombre?",
+        "opciones": [
+            "Un cuchillo colgado del cinturón.",
+            "Un cuerno para pólvora.",
+            "Una brújula de latón.",
+            "Una bolsa para municiones."
+        ],
+        "respuesta": 2
+    },
+    {
+        "pregunta": "4. ¿Cómo se describen los ojos del hombre?",
+        "opciones": [
+            "Grandes y soñadores.",
+            "Pequeños y agudos, siempre en movimiento.",
+            "Llorosos y apagados.",
+            "Serenos y contemplativos."
+        ],
+        "respuesta": 1
+    },
+    {
+        "pregunta": "5. ¿Qué cualidad refleja su rostro, a pesar de su vigilancia constante?",
+        "opciones": [
+            "Una gran tristeza.",
+            "Una astucia disimulada.",
+            "Una honradez firme y natural.",
+            "Una expresión de engaño."
+        ],
+        "respuesta": 2
+    }
+]

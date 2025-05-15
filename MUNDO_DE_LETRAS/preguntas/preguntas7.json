@@ -1,0 +1,52 @@
+[
+    {
+    "pregunta": "1. ¿Qué le propuso Mozart a Haydn como broma?",
+    "opciones": [
+        "Que compusiera una obra en su honor.",
+        "Que tocara unos compases que él había compuesto.",
+        "Que lo superara en una competencia musical.",
+        "Que adivinara una melodía secreta."
+    ],
+    "respuesta": 1
+    },
+    {
+        "pregunta": "2. ¿Por qué Haydn no pudo terminar de tocar la pieza de Mozart?",
+        "opciones": [
+            "Porque la partitura estaba incompleta.",
+            "Porque se equivocó en una nota difícil.",
+            "Porque le faltaban dedos para tocar una nota.",
+            "Porque se le rompió una cuerda del piano."
+        ],
+        "respuesta": 2
+    },
+    {
+        "pregunta": "3. ¿Cómo resolvió Mozart el problema de la nota que no se podía tocar con las manos?",
+        "opciones": [
+            "Pidiéndole ayuda a otro músico.",
+            "Modificando la composición.",
+            "Saltándose la nota.",
+            "Tocándola con la nariz."
+        ],
+        "respuesta": 3
+    },
+    {
+        "pregunta": "4. ¿Qué hizo Haydn después de ver la solución de Mozart?",
+        "opciones": [
+            "Se enojó por la broma.",
+            "Dijo que Mozart era un tramposo.",
+            "Se rió y elogió la creatividad de Mozart.",
+            "Se levantó y se fue sin decir nada."
+        ],
+        "respuesta": 2
+    },
+    {
+        "pregunta": "5. ¿Qué comentó Haydn sobre la forma de tocar de Mozart?",
+        "opciones": [
+            "Que tocaba con demasiada emoción.",
+            "Que usaba más técnica que sentimiento.",
+            "Que tocaba con toda el alma y con todo el cuerpo, incluso la nariz.",
+            "Que necesitaba practicar más."
+        ],
+        "respuesta": 2
+    }
+]
