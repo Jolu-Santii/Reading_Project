@@ -21,13 +21,8 @@
 
 ## Tecnologías Utilizadas
 
-- js
-- css
-- html
-- vite
-- react
-- typescritp
-- xd
+- Python
+- SQLite
 
 - - -
 
@@ -48,8 +43,6 @@ Facilitar el desarrollo de competencias lectoras mediante ejercicios personaliza
 - - -
 
 ## ✨ Características
-Ejercicios adaptativos: Dificultad ajustable según el nivel del usuario.
-
 Análisis de textos: Identificación de ideas principales, vocabulario clave y estructura argumental.
 
 Gamificación: Logros y recompensas para motivar el aprendizaje.
