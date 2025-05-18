@@ -1,6 +1,6 @@
 [
   {
-    "pregunta": "¿Cómo eran físicamente los peritios?",
+    "pregunta": "1. ¿Cómo eran físicamente los peritios?",
     "opciones": [
       "Tenían cuerpo de ciervo y alas de dragón",
       "Tenían cabeza y patas de ciervo, cuerpo de ave con alas y plumas",
@@ -10,7 +10,7 @@
     "respuesta": 1
   },
   {
-    "pregunta": "¿Qué sombra proyectaban los peritios cuando les daba el sol?",
+    "pregunta": "2. ¿Qué sombra proyectaban los peritios cuando les daba el sol?",
     "opciones": [
       "La de un ciervo gigante",
       "La de un pájaro en vuelo",
@@ -20,7 +20,7 @@
     "respuesta": 2
   },
   {
-    "pregunta": "¿Cuál era el propósito de los peritios al matar a un hombre?",
+    "pregunta": "3. ¿Cuál era el propósito de los peritios al matar a un hombre?",
     "opciones": [
       "Alimentarse de su carne",
       "Alcanzar el perdón haciendo coincidir su sombra con él",
@@ -30,7 +30,7 @@
     "respuesta": 1
   },
   {
-    "pregunta": "¿Qué hacían los peritios después de matar a un hombre?",
+    "pregunta": "4. ¿Qué hacían los peritios después de matar a un hombre?",
     "opciones": [
       "Se dormían profundamente",
       "Se escondían bajo tierra",
@@ -40,7 +40,7 @@
     "respuesta": 2
   },
   {
-    "pregunta": "¿Qué se dice al final del texto sobre los peritios?",
+    "pregunta": "5. ¿Qué se dice al final del texto sobre los peritios?",
     "opciones": [
       "Que son criaturas inmortales",
       "Que han sido cazados en la actualidad",

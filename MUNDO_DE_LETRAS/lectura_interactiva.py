@@ -460,7 +460,7 @@ class LecturaInteractiva:
 
             x += letras_ancho[i]
 
-   
+
     def reiniciar_respuestas(self):
         #Reinicia las respuestas guardadas (estilo original)
         carpeta_respuestas = "respuestas"
