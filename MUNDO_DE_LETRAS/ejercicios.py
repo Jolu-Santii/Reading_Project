@@ -41,7 +41,13 @@ class EjerciciosFrame(BaseFrame):
         self.overlay_frame = None
 
     def _setup_imagen_fondo(self):
-        self.pensando = Image.open("recursos/Pensando.png")
+
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+        # Ruta completa de la imagen
+        ruta_imagen = os.path.join(BASE_DIR, "recursos", "Pensando.png")
+
+        self.pensando = Image.open(ruta_imagen)
         self.tk_pensando = ImageTk.PhotoImage(self.pensando)
 
         self.contenedor_pensando = ctk.CTkCanvas(

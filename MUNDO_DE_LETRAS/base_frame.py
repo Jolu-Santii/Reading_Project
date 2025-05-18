@@ -1,4 +1,4 @@
-import customtkinter
+import customtkinter as ctk
 from PIL import Image, ImageTk
 from tkinter import Canvas
 import matplotlib.pyplot as plt
@@ -8,7 +8,7 @@ import os
 import datetime
 
 
-class BaseFrame(customtkinter.CTkFrame):
+class BaseFrame(ctk.CTkFrame):
     def __init__(self, master, show_frame_callback):
         super().__init__(master)
         self.master = master
@@ -41,7 +41,7 @@ class BaseFrame(customtkinter.CTkFrame):
 
     def create_top_rectangle(self):
         """Crea el rectángulo superior morado con la línea decorativa y agrega el ícono y el título"""
-        self.rectangulo = customtkinter.CTkCanvas(
+        self.rectangulo = ctk.CTkCanvas(
             self, 
             width=self.width+400, 
             height=(self.height/9), 
@@ -58,9 +58,13 @@ class BaseFrame(customtkinter.CTkFrame):
 
         # Cargar el ícono
         try:
-            logo_path = "recursos/book.png"  # Ruta del archivo de ícono
-            logo_img = Image.open(logo_path)
-            logo_img = logo_img.resize((50, 50))  # Ajustar tamaño del logo
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            logo_path = os.path.join(base_dir, "recursos", "book.png")
+            if not os.path.exists(logo_path):
+                raise FileNotFoundError(f"No se encontró el archivo: {logo_path}")
+            
+            logo_img = Image.open(logo_path).resize((50, 50))
+            logo = ImageTk.PhotoImage(logo_img)  # ✅ volver a usar PhotoImage aquí
             logo = ImageTk.PhotoImage(logo_img)
         except Exception as e:
             print(f"Error al cargar el ícono: {e}")
@@ -80,7 +84,7 @@ class BaseFrame(customtkinter.CTkFrame):
 
     def create_button_frame(self):
         """Crea el frame que contendrá los botones principales"""
-        self.frame_botones = customtkinter.CTkFrame(self, fg_color="transparent")
+        self.frame_botones = ctk.CTkFrame(self, fg_color="transparent")
         self.frame_botones.grid(row=1, column=0, columnspan=3, sticky="nsew")
         
         # Configurar grid del frame de botones
@@ -94,7 +98,7 @@ class BaseFrame(customtkinter.CTkFrame):
     def create_main_buttons(self):
         """Crea los botones principales (completados, ejercicios, reportes)"""
         # Botón Completados
-        self.completados = customtkinter.CTkButton(
+        self.completados = ctk.CTkButton(
             self.frame_botones, 
             width=250, 
             height=50, 
@@ -108,7 +112,7 @@ class BaseFrame(customtkinter.CTkFrame):
         self.completados.grid(row=0, column=0, padx=(self.width/6)-125, pady=40)
         
         # Botón Ejercicios
-        self.ejercicios = customtkinter.CTkButton(
+        self.ejercicios = ctk.CTkButton(
             self.frame_botones, 
             width=250, 
             height=50, 
@@ -122,7 +126,7 @@ class BaseFrame(customtkinter.CTkFrame):
         self.ejercicios.grid(row=0, column=1, padx=(self.width/6)-125, pady=40)
         
         # Botón Reportes
-        self.reportes = customtkinter.CTkButton(
+        self.reportes = ctk.CTkButton(
             self.frame_botones, 
             width=250, 
             height=50, 

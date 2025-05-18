@@ -7,6 +7,7 @@ import subprocess
 import textwrap
 import json
 import os
+import serial
 
 class LecturaInteractiva:
     def __init__(self, master, titulo, lectura_path, preguntas_path, imagen_path=None, volver_func=None):
@@ -24,6 +25,19 @@ class LecturaInteractiva:
         self._configurar_estilos()
         self.cargar_datos()
         self.construir_interfaz()
+
+        self.opcion_seleccionada = 0
+        self.escuchando_esp32 = True
+        self.esp32_after_id = None
+
+        try:
+            self.bt = serial.Serial('COM7', 115200, timeout=1)
+            print("Conectado al ESP32")
+        except serial.SerialException as e:
+            print("No se pudo conectar al ESP32:", e)
+            self.bt = None
+
+        self.esp32_after_id = self.master.after(100, self.escuchar_esp32)
 
     def _configurar_estilos(self):
         ctk.set_appearance_mode("light")
@@ -131,7 +145,7 @@ class LecturaInteractiva:
             text="⏪ REGRESAR A EJERCICIOS ⏪",
             font=("Comic Sans MS", 20), 
             fg_color="#931ea0", 
-            command=self.volver
+            command=self._cerrar_conexion_y_volver
         )
         self.boton_regresar.grid(row=2, column=0, pady=(0, 10))
 
@@ -265,6 +279,17 @@ class LecturaInteractiva:
 
         # Configurar pantalla de resultados
         self._configurar_pantalla_resultados()
+        self.escuchando_esp32 = False
+        if self.esp32_after_id:
+            self.master.after_cancel(self.esp32_after_id)
+
+        self.escuchando_esp32 = False
+        if self.esp32_after_id:
+            self.master.after_cancel(self.esp32_after_id)
+        if self.bt and self.bt.is_open:
+            self.bt.close()
+
+    
 
     def _configurar_pantalla_resultados(self):
         self.master.grid_rowconfigure(0, weight=1)
@@ -286,7 +311,11 @@ class LecturaInteractiva:
         imagen_frame.grid_columnconfigure(0, weight=1)
 
         try:
-            felicitacion_img = Image.open("recursos/ninoSaltando.png")
+            BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+            # Ruta completa de la imagen
+            ruta_imagen = os.path.join(BASE_DIR, "recursos", "nino.png")
+            felicitacion_img = Image.open(ruta_imagen)
             felicitacion_ctk_img = ctk.CTkImage(light_image=felicitacion_img, size=(500, 700))
             imagen_label = ctk.CTkLabel(imagen_frame, image=felicitacion_ctk_img, text="")
             imagen_label.image = felicitacion_ctk_img  # Evitar garbage collection
@@ -404,6 +433,9 @@ class LecturaInteractiva:
         self._eliminar_frame_confirmacion()
         if self.callback_volver:
             self.callback_volver()
+        self.escuchando_esp32 = False
+        if self.esp32_after_id:
+            self.master.after_cancel(self.esp32_after_id)
 
     def _cancelar_salida(self):
         self._eliminar_frame_confirmacion()
@@ -460,7 +492,7 @@ class LecturaInteractiva:
 
             x += letras_ancho[i]
 
-
+   
     def reiniciar_respuestas(self):
         #Reinicia las respuestas guardadas (estilo original)
         carpeta_respuestas = "respuestas"
@@ -490,3 +522,49 @@ class LecturaInteractiva:
 
         with open(archivo_salida, "w", encoding="utf-8") as f:
             json.dump(datos, f, indent=4, ensure_ascii=False)
+
+    def siguiente_opcion(self, event=None):
+        self.opcion_seleccionada = (self.opcion_seleccionada + 1) % 4
+        self.actualizar_resaltado_opcion()
+
+    def aceptar_opcion(self, event=None):
+        self.verificar_respuesta(self.opcion_seleccionada)
+
+    def actualizar_resaltado_opcion(self):
+        for i, boton in enumerate(self.botones):
+            if i == self.opcion_seleccionada:
+                boton.configure(border_width=4, border_color="orange")
+            else:
+                boton.configure(border_width=0)
+
+    def escuchar_esp32(self):
+        if self.escuchando_esp32 and self.bt:
+            try:
+                if self.bt.in_waiting:
+                    mensaje = self.bt.readline().decode().strip()
+                    if mensaje == "SIG":
+                        self.siguiente_opcion()
+                    elif mensaje == "OK":
+                        self.aceptar_opcion()
+            except Exception as e:
+                print("Error leyendo del ESP32:", e)
+
+        if self.escuchando_esp32:
+            self.esp32_after_id = self.master.after(100, self.escuchar_esp32)
+
+    def _cerrar_conexion_y_volver(self):
+        self.escuchando_esp32 = False
+
+        if self.esp32_after_id:
+            self.master.after_cancel(self.esp32_after_id)
+
+        if self.bt and self.bt.is_open:
+            self.bt.close()
+
+        if self.callback_volver:
+            self.callback_volver()
+
+    def on_show(self):
+        self.escuchando_esp32 = True
+        if self.bt and (not self.esp32_after_id):
+            self.esp32_after_id = self.master.after(100, self.escuchar_esp32)

@@ -73,7 +73,11 @@ class CompletadosFrame(BaseFrame):
     def mostrar_imagen(self):
         """Muestra la imagen estática en el lado izquierdo (solo una vez)"""
         try:
-            nota_img = Image.open("recursos/nota.png")
+            BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+            # Ruta completa de la imagen
+            ruta_imagen = os.path.join(BASE_DIR, "recursos", "nota.png")
+            nota_img = Image.open(ruta_imagen)
             nota_img = nota_img.resize((550, 600))
             self.tk_nota = ImageTk.PhotoImage(nota_img)
             

@@ -2,6 +2,8 @@ import customtkinter
 from PIL import Image, ImageTk
 from tkinter import Canvas
 from base_frame import BaseFrame
+import os
+
 class InicioFrame(BaseFrame):
     def __init__(self, master, show_frame_callback):
         super().__init__(master, show_frame_callback)
@@ -24,18 +26,32 @@ class InicioFrame(BaseFrame):
         self.grid_rowconfigure(2, weight=1)
 
         # Imágenes
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-        self.nino = Image.open("recursos/nino.png")
+        # Ruta completa de la imagen
+        ruta_imagen = os.path.join(BASE_DIR, "recursos", "nino.png")
+
+        self.nino = Image.open(ruta_imagen)
         self.nino = self.nino.resize((int(self.width/5), int(self.height/1.66)))
         self.tk_nino = ImageTk.PhotoImage(self.nino)
 
-        self.globo = Image.open("recursos/globo.png")
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+        # Ruta completa de la imagen
+        ruta_imagen = os.path.join(BASE_DIR, "recursos", "globo.png")
+        
+        self.globo = Image.open(ruta_imagen)
         globo_width = int(self.width/1.72)
         globo_height = int(self.height/2)        
         self.globo = self.globo.resize((globo_width, globo_height))
         self.tk_globo = ImageTk.PhotoImage(self.globo)
 
-        self.nina = Image.open("recursos/nina.png")
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+        # Ruta completa de la imagen
+        ruta_imagen = os.path.join(BASE_DIR, "recursos", "nina.png")
+
+        self.nina = Image.open(ruta_imagen)
         self.nina = self.nina.resize((int(self.width/5), int(self.height/1.66)))
         self.tk_nina = ImageTk.PhotoImage(self.nina)
 
