@@ -2,6 +2,7 @@ import customtkinter as ctk
 from PIL import Image, ImageTk
 from base_frame import BaseFrame
 import json, os
+import sqlite3 as sql
 from tkinter import Canvas
 import tkinter as tk
 from lectura_interactiva import LecturaInteractiva
@@ -81,14 +82,20 @@ class EjerciciosFrame(BaseFrame):
 
         button_font = ctk.CTkFont(family="Montserrat", size=22)
 
+        bd_path = os.path.join(os.path.dirname(__file__), "preguntas\\lecturas.db")
+        con = sql.connect(bd_path)
+        cur = con.cursor()
+
         with open("lista_ejercicios/ejercicios.json", encoding="utf-8") as f:
             ejercicios = json.load(f)
 
         for ejercicio in ejercicios:
-            nombre_base = os.path.splitext(os.path.basename(ejercicio["lectura"]))[0]
-            esta_completada = nombre_base in self.lecturas_completadas
+            ejercicio_sql = cur.execute("SELECT id, titulo FROM lecturas WHERE id = ?", (int(ejercicio["id"]),)).fetchone()
 
-            texto_boton = f"✓ {ejercicio['titulo']}" if esta_completada else f"🕮 {ejercicio['titulo']}"
+            nombre_base = f"lectura{0}"
+            esta_completada = ejercicio_sql[0] in self.lecturas_completadas
+
+            texto_boton = f"✓ {ejercicio_sql[1]}" if esta_completada else f"🕮 {ejercicio_sql[1]}"
 
             btn = ctk.CTkButton(
                 self,
@@ -99,10 +106,9 @@ class EjerciciosFrame(BaseFrame):
                 text_color="white",
                 fg_color=ejercicio["color"],
                 hover_color=self._get_hover_color(ejercicio["color"]),
-                command=lambda e=ejercicio, nb=nombre_base: self._manejar_clic_lectura(
-                    e["titulo"], 
-                    e["lectura"],
-                    e["preguntas"], 
+                command=lambda e=ejercicio, esql=ejercicio_sql, nb=nombre_base: self._manejar_clic_lectura(
+                    esql[1], 
+                    esql[0],
                     e["imagen"],
                     nb
                 )
@@ -127,17 +133,17 @@ class EjerciciosFrame(BaseFrame):
         for archivo in os.listdir(carpeta_respuestas):
             if archivo.endswith('.json'):
                 nombre_lectura = os.path.splitext(archivo)[0]
-                lecturas_completadas.append(nombre_lectura)
+                lecturas_completadas.append(int(nombre_lectura[-1]))
 
         return lecturas_completadas
 
-    def _manejar_clic_lectura(self, titulo, lectura_path, preguntas_path, imagen_path, nombre_lectura):
+    def _manejar_clic_lectura(self, titulo, id_lectura, imagen_path, nombre_lectura):
         if nombre_lectura in self.lecturas_completadas:
-            self._mostrar_advertencia_reinicio(titulo, lectura_path, preguntas_path, imagen_path, nombre_lectura)
+            self._mostrar_advertencia_reinicio(titulo, id_lectura, imagen_path, nombre_lectura)
         else:
-            self.mostrar_lectura(titulo, lectura_path, preguntas_path, imagen_path)
+            self.mostrar_lectura(titulo, id_lectura, imagen_path)
 
-    def _mostrar_advertencia_reinicio(self, titulo, lectura_path, preguntas_path, imagen_path, nombre_lectura):
+    def _mostrar_advertencia_reinicio(self, titulo, id_lectura, imagen_path, nombre_lectura):
         # Crear frame de superposición
         self.overlay_frame = ctk.CTkFrame(
             self, 
@@ -182,7 +188,7 @@ class EjerciciosFrame(BaseFrame):
             font=("Comic Sans MS", 20, "bold"),
             fg_color="#931ea0",
             hover_color="#7a1885",
-            command=lambda: self._reiniciar_lectura(titulo, lectura_path, preguntas_path, imagen_path, nombre_lectura)
+            command=lambda: self._reiniciar_lectura(titulo, id_lectura, imagen_path, nombre_lectura)
         )
         btn_reiniciar.grid(row=1, column=0, padx=(20, 10), pady=20, sticky="e")
 
@@ -197,9 +203,9 @@ class EjerciciosFrame(BaseFrame):
         )
         btn_cancelar.grid(row=1, column=1, padx=(10, 20), pady=20, sticky="w")
 
-    def _reiniciar_lectura(self, titulo, lectura_path, preguntas_path, imagen_path, nombre_lectura):
+    def _reiniciar_lectura(self, titulo, id_lectura, imagen_path, nombre_lectura):
         self._cancelar_advertencia()
-        self.mostrar_lectura(titulo, lectura_path, preguntas_path, imagen_path)
+        self.mostrar_lectura(titulo, id_lectura, imagen_path)
 
     def _cancelar_advertencia(self):
         if self.overlay_frame:
@@ -213,7 +219,7 @@ class EjerciciosFrame(BaseFrame):
                    f"{min(255, int(color[5:7], 16)+30):02X}"
         return f"gray{max(20, min(80, 50))}"  # Para colores nombrados
 
-    def mostrar_lectura(self, titulo, lectura_path, preguntas_path, imagen_path):
+    def mostrar_lectura(self, titulo, id_lectura, imagen_path):
         self.ocultar_elementos()
 
         if self.lectura_frame:
@@ -225,11 +231,10 @@ class EjerciciosFrame(BaseFrame):
         LecturaInteractiva(
             master=self.lectura_frame,
             titulo=titulo,
-            lectura_path=lectura_path,
-            preguntas_path=preguntas_path,
+            id_lectura = id_lectura,
             imagen_path=imagen_path,
             volver_func=self._volver_a_ejercicios
-        ).pack(expand=True, fill="both")
+        )
 
     def _volver_a_ejercicios(self):
         if self.lectura_frame:

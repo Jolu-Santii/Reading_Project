@@ -3,21 +3,23 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 from tkinter import Canvas
 import tkinter as tk
+import sqlite3 as sql
 import subprocess
 import textwrap
 import json
 import os
 import serial
+from serial import Serial, SerialException
 
 class LecturaInteractiva:
-    def __init__(self, master, titulo, lectura_path, preguntas_path, imagen_path=None, volver_func=None):
+    def __init__(self, master, titulo, id_lectura, imagen_path=None, volver_func=None):
         self.master = master
         self.titulo = titulo
-        self.lectura_path = lectura_path
-        self.preguntas_path = preguntas_path
+        self.id_lectura = id_lectura
         self.imagen_path = imagen_path
-        self.callback_volver = volver_func 
+        self.callback_volver = volver_func
         self.preguntas = []
+        self.orden_respuestas = []
         self.puntaje = 0
         self.pregunta_actual = 0
         self.respuestas_elegidas = []
@@ -31,9 +33,9 @@ class LecturaInteractiva:
         self.esp32_after_id = None
 
         try:
-            self.bt = serial.Serial('COM7', 115200, timeout=1)
+            self.bt = Serial('COM7', 115200, timeout=1)
             print("Conectado al ESP32")
-        except serial.SerialException as e:
+        except SerialException as e:
             print("No se pudo conectar al ESP32:", e)
             self.bt = None
 
@@ -45,16 +47,22 @@ class LecturaInteractiva:
         self.master.configure(fg_color="white")
 
     def cargar_datos(self):
+        bd_path = os.path.join(os.path.dirname(__file__), "preguntas\\lecturas.db")
+        con = sql.connect(bd_path)
+        cur = con.cursor()
+        
         try:
-            with open(self.lectura_path, encoding="utf-8") as f:
-                self.lectura = f.read()
-            
-            with open(self.preguntas_path, encoding="utf-8") as f:
-                self.preguntas = json.load(f)
+            self.lectura = fr"{cur.execute("SELECT lectura FROM lecturas WHERE id = ?", (self.id_lectura,)).fetchone()[0]}"
+
+            self.preguntas = cur.execute("SELECT * FROM preguntas WHERE id_lectura = ?", (self.id_lectura,)).fetchall()
+
         except Exception as e:
             messagebox.showerror("Error", f"No se pudieron cargar los datos: {str(e)}")
             self.lectura = "Contenido no disponible"
             self.preguntas = []
+
+        cur.close()
+        con.close()
 
     def construir_interfaz(self):
         self.master.grid_rowconfigure((0,1,2,3,4,5,6), weight=1)
@@ -148,6 +156,7 @@ class LecturaInteractiva:
             command=self._cerrar_conexion_y_volver
         )
         self.boton_regresar.grid(row=2, column=0, pady=(0, 10))
+        print("Boton creado...")
 
     def continuar(self):
         # Ocultar botón continuar
@@ -190,7 +199,7 @@ class LecturaInteractiva:
                 fg_color=colores[i], 
                 hover_color=hover_colors[i],
                 corner_radius=10, 
-                command=lambda i=i: self.verificar_respuesta(i)
+                command=lambda i=i : self.verificar_respuesta(i)
             )
             btn.grid(row=0, column=i, padx=10)
             self.botones.append(btn)
@@ -230,31 +239,50 @@ class LecturaInteractiva:
             return
             
         pregunta = self.preguntas[self.pregunta_actual]
-        self.pregunta_label.configure(text=pregunta["pregunta"])
+        respuestas = []
+        self.pregunta_label.configure(text=pregunta[2])
         self.feedback_label.configure(text="")
         
+        bd_path = os.path.join(os.path.dirname(__file__), "preguntas\\lecturas.db")
+        con = sql.connect(bd_path)
+        cur = con.cursor()
+
         # Configurar botones con texto envuelto (original)
-        for i in range(4):
-            texto_envuelto = "\n".join(textwrap.wrap(pregunta["opciones"][i], width=22))
+        preguntas_sql = cur.execute("SELECT id, texto FROM respuestas WHERE id_lectura = ? AND id_pregunta = ? ORDER BY RANDOM()", (self.id_lectura, (self.pregunta_actual+1))).fetchall()
+        for i, pregunta in enumerate(preguntas_sql):
+            respuestas.append(pregunta[0])
+
+            texto_envuelto = "\n".join(textwrap.wrap(pregunta[1], width=22))
             self.botones[i].configure(text=texto_envuelto)
 
+        self.orden_respuestas = respuestas
+        
         # Actualizar progreso
         self.progreso.set(self.pregunta_actual / len(self.preguntas))
         self.progreso_text.configure(text=f"{self.pregunta_actual + 1}/{len(self.preguntas)}")
+        
+        cur.close()
+        con.close()
 
     def verificar_respuesta(self, indice):
         if not self.preguntas or self.pregunta_actual >= len(self.preguntas):
             return
-            
+
+        bd_path = os.path.join(os.path.dirname(__file__), "preguntas\\lecturas.db")
+        con = sql.connect(bd_path)
+        cur = con.cursor()
+
         self.respuestas_elegidas.append(indice)
-        correcta = self.preguntas[self.pregunta_actual]["respuesta"]
+        correcta = cur.execute("SELECT id FROM respuestas WHERE id_lectura = ? AND id_pregunta = ? AND esCorrecta = 1", (self.id_lectura, (self.pregunta_actual+1))).fetchone()[0]
         
-        if indice == correcta:
+        print(f"Preguntas: {self.orden_respuestas[indice]} == {correcta}")
+
+        if self.orden_respuestas[indice] == correcta:
             self.puntaje += 1
             self.feedback_label.configure(text="¡Respuesta correcta!", text_color="green")
             delay = 1350
         else:
-            correcta_txt = self.preguntas[self.pregunta_actual]["opciones"][correcta]
+            correcta_txt = cur.execute("SELECT texto FROM respuestas WHERE id_lectura = ? AND id_pregunta = ? AND esCorrecta = 1", (self.id_lectura, (self.pregunta_actual+1))).fetchone()[0]
             self.feedback_label.configure(
                 text=f"INCORRECTO. \nLa respuesta correcta era: {correcta_txt}", 
                 text_color="red"
@@ -269,6 +297,9 @@ class LecturaInteractiva:
         else:
             self.progreso.set(self.pregunta_actual / len(self.preguntas))
             self.master.after(delay, self.finalizacion)
+
+        cur.close()
+        con.close()
 
     def finalizacion(self):
         self.guardar_respuestas()
@@ -289,7 +320,6 @@ class LecturaInteractiva:
         if self.bt and self.bt.is_open:
             self.bt.close()
 
-    
 
     def _configurar_pantalla_resultados(self):
         self.master.grid_rowconfigure(0, weight=1)
@@ -366,7 +396,7 @@ class LecturaInteractiva:
             text="⏪ REGRESAR A EJERCICIOS ⏪",
             font=("Comic Sans MS", 25),
             fg_color="#931ea0",
-            command=self.volver
+            command= self.volver
         )
         boton_regresar.grid(row=3, column=0, pady=(0, 20))
     
@@ -451,6 +481,7 @@ class LecturaInteractiva:
         #Maneja el evento de volver con confirmación
         if self.pregunta_actual < len(self.preguntas) and self.pregunta_actual > 0:
             self._crear_frame_confirmacion()
+        
         else:
             if self.callback_volver:
                 self.callback_volver()
@@ -498,7 +529,7 @@ class LecturaInteractiva:
         carpeta_respuestas = "respuestas"
         os.makedirs(carpeta_respuestas, exist_ok=True)
 
-        nombre_lectura = os.path.splitext(os.path.basename(self.lectura_path))[0]
+        nombre_lectura = f"lectura{self.id_lectura}"
         archivo_respuestas = os.path.join(carpeta_respuestas, f"{nombre_lectura}.json")
 
         if os.path.exists(archivo_respuestas):
@@ -510,7 +541,7 @@ class LecturaInteractiva:
         carpeta_respuestas = "respuestas"
         os.makedirs(carpeta_respuestas, exist_ok=True)
 
-        nombre_lectura = os.path.splitext(os.path.basename(self.lectura_path))[0]
+        nombre_lectura = f"lectura{self.id_lectura}"
         archivo_salida = os.path.join(carpeta_respuestas, f"{nombre_lectura}.json")
 
         datos = [{
@@ -561,8 +592,7 @@ class LecturaInteractiva:
         if self.bt and self.bt.is_open:
             self.bt.close()
 
-        if self.callback_volver:
-            self.callback_volver()
+        self.volver()
 
     def on_show(self):
         self.escuchando_esp32 = True
