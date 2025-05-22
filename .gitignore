@@ -1,5 +1,5 @@
 MUNDO_DE_LETRAS/__pycache__/
-MUNDO_DE_LETRAS/respuestas/*.*
+MUNDO_DE_LETRAS/respuestas/*
 MUNDO_DE_LETRAS/reporte/reporte_actual.pdf
 */dist/
 dist/
@@ -7,3 +7,4 @@ dist/
 build/
 MUNDO_DE_LETRAS/lecturas/
 MUNDO_DE_LETRAS/preguntas/*.json
+MUNDO_DE_LETRAS/sqlite/
