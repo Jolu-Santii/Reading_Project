@@ -92,7 +92,8 @@ class EjerciciosFrame(BaseFrame):
         for ejercicio in ejercicios:
             ejercicio_sql = cur.execute("SELECT id, titulo FROM lecturas WHERE id = ?", (int(ejercicio["id"]),)).fetchone()
 
-            nombre_base = f"lectura{0}"
+            nombre_base = f"lectura{ejercicio_sql[0]}"
+            print(nombre_base)
             esta_completada = ejercicio_sql[0] in self.lecturas_completadas
 
             texto_boton = f"✓ {ejercicio_sql[1]}" if esta_completada else f"🕮 {ejercicio_sql[1]}"
@@ -138,7 +139,7 @@ class EjerciciosFrame(BaseFrame):
         return lecturas_completadas
 
     def _manejar_clic_lectura(self, titulo, id_lectura, imagen_path, nombre_lectura):
-        if nombre_lectura in self.lecturas_completadas:
+        if id_lectura in self.lecturas_completadas:
             self._mostrar_advertencia_reinicio(titulo, id_lectura, imagen_path, nombre_lectura)
         else:
             self.mostrar_lectura(titulo, id_lectura, imagen_path)
